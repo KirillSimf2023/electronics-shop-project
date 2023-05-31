@@ -1,9 +1,13 @@
+import csv
+import os
+
 class Item:
     """
     Класс для представления товара в магазине.
     """
     pay_rate = 1.0
     all = []
+    CSV = os.path.abspath('../src/items.csv')
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
@@ -20,19 +24,42 @@ class Item:
 
     #Геттер для name
     @property
-    def name(self):
+    def name(self) -> str:
         return f'{self.__name}'
 
     #Cеттер для name
     @name.setter
     def name(self, add_name):
-        if len(name) > 10:
+        if len(add_name) > 10:
             raise Exception('Длина наименования товара превышает 10 символов')
         else:
             self.__name = add_name
 
 
+    #класс-метод, инициализирующий экземпляры класса Item данными
+    # из файла src/items.csv
+    @classmethod
+    def instantiate_from_csv(cls):
+        # cls.all.clear()
+        # csv_file = os.path.join('src/items.csv')
+        # with open(csv_file, newline='') as csvfile:
+        #     reader = csv.DictReader(csvfile)
+        #     for row in reader:
+        #         cls(row['name'], row['price'], row['quantity'])
+        cls.all.clear()
+        try:
+            with open(cls.CSV, newline='', mode='r', encoding='cp1251') as csvfile:
+                reader = csv.DictReader(csvfile)
+                for row in reader:
+                    cls(row['name'], row['price'], row['quantity'])
+        except FileNotFoundError:
+            print("Файл не найден")
 
+
+    #статический метод, возвращающий число из числа-строки
+    @staticmethod
+    def string_to_number(number_string: str) -> int:
+        return int(float(number_string))
 
 
 
