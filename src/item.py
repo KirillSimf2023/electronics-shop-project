@@ -13,10 +13,28 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
         self.all.append(self)
+
+    #Геттер для name
+    @property
+    def name(self):
+        return f'{self.__name}'
+
+    #Cеттер для name
+    @name.setter
+    def name(self, add_name):
+        if len(name) > 10:
+            raise Exception('Длина наименования товара превышает 10 символов')
+        else:
+            self.__name = add_name
+
+
+
+
+
 
     def calculate_total_price(self) -> float:
         """
