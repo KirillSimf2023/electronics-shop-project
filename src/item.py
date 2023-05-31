@@ -40,12 +40,6 @@ class Item:
     # из файла src/items.csv
     @classmethod
     def instantiate_from_csv(cls):
-        # cls.all.clear()
-        # csv_file = os.path.join('src/items.csv')
-        # with open(csv_file, newline='') as csvfile:
-        #     reader = csv.DictReader(csvfile)
-        #     for row in reader:
-        #         cls(row['name'], row['price'], row['quantity'])
         cls.all.clear()
         try:
             with open(cls.CSV, newline='', mode='r', encoding='cp1251') as csvfile:
