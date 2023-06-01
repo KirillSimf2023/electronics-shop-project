@@ -44,3 +44,16 @@ def test_HW_2():
     assert Item.string_to_number('15') == 15
     assert Item.string_to_number('50.0') == 50
     assert Item.string_to_number('15.6') == 15
+
+def test_HW_3():
+    #тестируем методы __repr__ и __str__
+    item1 = Item("Смартфон", 10000, 20)
+    assert repr(item1) == "Item('Смартфон', 10000, 20)"
+    assert str(item1) == 'Смартфон'
+
+    item2 = Item("Мышка", 50, 5)
+    assert repr(item2) == "Item('Мышка', 50, 5)"
+    assert str(item2) == 'Мышка'
+
+
+
